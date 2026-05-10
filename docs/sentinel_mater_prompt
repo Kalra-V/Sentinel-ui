@@ -1,0 +1,362 @@
+Build a production-quality frontend prototype for a SaaS product called “Sentinel”.
+
+Sentinel is an AI-powered intelligence layer for UK dental groups.
+
+This is NOT a generic dental dashboard.
+It should feel like:
+
+Bloomberg Terminal
+Linear
+modern operational intelligence software
+high-trust infrastructure
+analytical and editorial
+
+The UI must look premium, calm, and data-dense without clutter.
+
+DO NOT use:
+
+playful SaaS styling
+bright gradients
+cartoon illustrations
+excessive shadows
+rounded bubbly cards
+startup-looking dashboards
+
+The tone is:
+
+serious
+restrained
+operational
+analytical
+executive-facing
+
+The product combines THREE core systems into one unified intelligence layer:
+
+Dentally PMS (practice management system)
+GoHighLevel CRM (communications + lead tracking)
+AI + Human phone call analytics
+
+The product should visually demonstrate that all three systems are unified into one operational brain.
+
+Use:
+
+dark background (#0B0B0B / near black)
+dark grey panels
+amber accent color
+soft white typography
+tabular numerical fonts
+dense but elegant layouts
+subtle borders
+minimal chart styling
+
+The product should feel expensive and operationally critical.
+
+APP STRUCTURE
+
+Create a desktop-first SaaS app with left sidebar navigation.
+
+Sidebar sections:
+
+Overview
+Calls
+Patients
+Patient Journey
+Revenue
+Ask Sentinel
+
+Top bar:
+
+global date selector
+practice selector
+export button
+user avatar
+
+The app should look fully interactive with realistic fake data.
+
+OVERVIEW DASHBOARD
+
+Create a high-end executive dashboard.
+
+Top KPI strip:
+
+Diary Utilisation
+Calls Handled
+Revenue Booked
+Failed To Attend Rate
+AI Resolution Rate
+Revenue Per Chair Hour
+
+Each KPI:
+
+trend vs previous 30 days
+subtle sparkline
+clickable
+
+Main dashboard sections:
+
+AI vs Human call comparison
+Live practice activity feed
+Practitioner performance table
+Upcoming diary heatmap
+High-signal alerts panel
+
+Alerts should feel analytical, not alarmist.
+
+Example alerts:
+
+“FTA rate for Invisalign consultations increased 14% week-over-week.”
+“Dr Patel has 11 unfilled chair hours next Tuesday.”
+“AI receptionist resolved 82% of inbound booking calls this week.”
+CALLS DASHBOARD
+
+THIS IS THE MOST IMPORTANT VIEW.
+
+The entire purpose is to demonstrate the combination of:
+
+AI receptionist calls
+human reception calls
+booking outcomes
+Dentally appointments
+GHL communications
+
+At the top:
+Segmented toggle:
+
+All
+AI
+Human
+
+KPI strip:
+
+total calls
+answered rate
+appointments booked
+revenue booked
+average handle time
+missed calls
+
+Create:
+
+stacked call volume chart
+AI vs Human comparison block
+call outcome donuts
+hour-by-day heatmap
+unified call log
+
+The unified call log should feel extremely real.
+
+Columns:
+
+timestamp
+AI/Human badge
+caller
+matched patient
+intent
+outcome
+booked appointment
+revenue value
+sentiment
+transcript preview
+
+Transcript previews should open a slide-over panel.
+
+Include realistic dental conversations:
+
+Invisalign enquiry
+emergency pain
+hygiene booking
+whitening enquiry
+implant consultation
+
+Important:
+Show how calls connect into:
+
+Dentally appointments
+GHL communication history
+patient records
+
+This cross-system linkage is the entire product story.
+
+PATIENTS VIEW
+
+Create a sophisticated operational CRM/patient intelligence table.
+
+Metrics:
+
+active patients
+lapsed patients
+reactivation opportunities
+treatment pipeline value
+average patient LTV
+
+Table columns:
+
+patient name
+last visit
+next appointment
+lifetime value
+treatment plan value
+last communication
+acquisition source
+membership status
+
+Clicking a patient opens a RIGHT SIDE TIMELINE PANEL.
+
+Timeline combines:
+
+GHL SMS
+emails
+AI calls
+human calls
+Dentally appointments
+treatment plans
+payments
+
+The timeline is one of the key “wow” moments.
+
+PATIENT JOURNEY VIEW
+
+This should feel like a premium analytics product.
+
+Include:
+
+cohort retention heatmap
+treatment journey Sankey diagram
+acquisition source comparison
+lifetime value charts
+
+Acquisition sources:
+
+Meta Ads
+Google Search
+Referral
+Reactivation Campaign
+AI Call Intake
+Walk-in
+
+Show:
+
+which sources produce the highest LTV
+which treatment types compound into additional treatments
+patient retention over time
+
+This is the strategic intelligence layer.
+
+REVENUE VIEW
+
+Executive financial intelligence.
+
+Main chart:
+“New Treatment Plans vs Existing Treatment Plan Revenue”
+
+Use:
+
+stacked monthly bars
+trend indicators
+drill-down tables
+
+Metrics:
+
+new plan value
+existing plan revenue
+avg treatment value
+days to first payment
+treatment acceptance rate
+ASK SENTINEL
+
+This is the hero feature.
+
+Create an AI analyst interface.
+
+Layout:
+
+minimal elegant chat UI
+dark editorial styling
+analytical tone
+
+Example prompts:
+
+“Why did FTA rate spike last week?”
+“Which practitioner has the lowest chair utilisation this month?”
+“How many Invisalign leads from Meta Ads booked treatment plans?”
+“Which patients have high treatment value but no follow-up booked?”
+
+Responses should:
+
+cite actual metrics
+include charts inline
+reference Dentally + GHL + calls together
+feel like a senior analyst wrote them
+
+Example tone:
+“New patient acquisition increased 18% month-over-month, primarily driven by Invisalign enquiries originating from Meta campaigns. However, only 41% converted to booked consultations, significantly below the practice average of 58%.”
+
+TECHNICAL REQUIREMENTS
+
+Use:
+
+React
+Tailwind
+shadcn/ui
+Recharts
+Framer Motion
+
+Make it feel production-grade.
+
+Include:
+
+hover states
+drill-down interactions
+sliding panels
+persistent filters
+animated charts
+skeleton loading states
+
+Everything should feel believable enough to demo to dental groups and investors.
+
+Create realistic UK dental practice fake data throughout the app.
+
+Practice names:
+
+Chelsea Dental Studio
+Manchester Smile Clinic
+Harrow Dental Care
+SmileCraft London
+
+Use GBP (£) currency formatting everywhere.
+
+Avoid lorem ipsum entirely.
+
+IMPORTANT PRODUCT POSITIONING
+
+The UI must communicate ONE core idea:
+
+“Sentinel is the operational intelligence layer sitting across Dentally, GHL, and phone systems.”
+
+Every major screen should reinforce this visually.
+
+The product is not:
+
+a CRM
+a PMS
+a call tool
+
+It is the intelligence layer ABOVE them.
+
+This is enough to get a VERY convincing prototype built quickly.
+
+The strongest demo flow for clients would be:
+
+Overview dashboard
+Calls dashboard
+Click into patient
+Show unified timeline
+Open Ask Sentinel
+Ask:
+“Why are Invisalign bookings down this month?”
+Show AI-generated analytical answer pulling:
+call outcomes
+GHL lead source
+Dentally bookings
+
+That sequence will immediately communicate the value proposition.
