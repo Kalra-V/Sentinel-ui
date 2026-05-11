@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 import { Download } from 'lucide-react'
 import DateRangePicker from '../components/shared/DateRangePicker'
 import TranscriptPanel from '../components/calls/TranscriptPanel'
-import { callKPIs, aiVsHuman, callVolumeDaily, outcomeData, hourHeatmapData, callLog } from '../data/calls'
+import { callsData } from '../data/calls'
+import { toPracticeKey } from '../utils/practice'
 
 const outcomeColors = { BOOKED: '#22C55E', CALLBACK: '#3B82F6', MISSED: '#EF4444', BOOKED_URGENT: '#F5A623', INFO_ONLY: '#6B6B6B', RESOLVED: '#06B6D4' }
 const outcomeLabels = { BOOKED: 'BOOKED', CALLBACK: 'CALLBACK', MISSED: 'MISSED', BOOKED_URGENT: 'BOOKED · URGENT', INFO_ONLY: 'INFO ONLY', RESOLVED: 'RESOLVED' }
@@ -38,6 +39,16 @@ export default function Calls() {
   const [selectedCall, setSelectedCall] = useState(null)
   const [openPatientId, setOpenPatientId] = useState(null)
   const navigate = useNavigate()
+  const { practice } = useOutletContext()
+
+  const practiceKey = toPracticeKey(practice)
+  const data = callsData[practiceKey]
+  const callKPIs = data.kpis[range] || data.kpis['30d']
+  const aiVsHuman = data.aiVsHuman[range] || data.aiVsHuman['30d']
+  const callVolumeDaily = data.callVolume[range] || data.callVolume['30d']
+  const outcomeData = data.outcomes[range] || data.outcomes['30d']
+  const hourHeatmapData = data.heatmap
+  const callLog = data.callLog
 
   const filteredLog = toggle === 'All' ? callLog : toggle === 'AI' ? callLog.filter(c => c.handler.type === 'ai') : callLog.filter(c => c.handler.type === 'human')
   const outcomes = outcomeData[toggle.toLowerCase()]

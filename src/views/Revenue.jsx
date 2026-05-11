@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, Cell } from 'recharts'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 import { Download, ArrowUpRight } from 'lucide-react'
 import DateRangePicker from '../components/shared/DateRangePicker'
-import { revenueMetrics, monthlyRevenue, drilldownPlans } from '../data/revenue'
+import { revenueData } from '../data/revenue'
+import { toPracticeKey } from '../utils/practice'
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null
@@ -31,6 +32,15 @@ export default function Revenue() {
   const [chartMode, setChartMode] = useState('side-by-side')
   const [selectedMonth, setSelectedMonth] = useState(null)
   const navigate = useNavigate()
+  const { practice } = useOutletContext()
+
+  const practiceKey = toPracticeKey(practice)
+  const data = revenueData[practiceKey]
+  // Revenue view uses its own range keys: '6m', '12m', '24m' — map to data range
+  const rangeKey = range === '6m' ? '30d' : range === '24m' ? '90d' : '30d'
+  const revenueMetrics = data.metrics[rangeKey] || data.metrics['30d']
+  const monthlyRevenue = data.monthlyRevenue
+  const drilldownPlans = data.drilldownPlans
 
   const displayData = range === '6m' ? monthlyRevenue.slice(-6) : range === '24m' ? monthlyRevenue : monthlyRevenue.slice(-12)
   const drillData = selectedMonth ? drilldownPlans : []

@@ -123,10 +123,10 @@ export default function Sidebar({ practice, setPractice }) {
       {/* User */}
       <div style={{ padding: '12px 16px', borderTop: '1px solid #1E1E1E', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#F5A623', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#0B0B0B', flexShrink: 0 }}>
-          AG
+          CW
         </div>
         <div style={{ overflow: 'hidden' }}>
-          <div style={{ fontSize: 11, color: '#F0EDE8', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>Anjali Gupta</div>
+          <div style={{ fontSize: 11, color: '#F0EDE8', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>Charlotte Webb</div>
           <div style={{ fontSize: 9, color: '#4A4A4A', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Principal</div>
         </div>
       </div>

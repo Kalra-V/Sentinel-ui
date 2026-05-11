@@ -4,7 +4,8 @@ import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, 
 import { TrendingUp, TrendingDown, ArrowUpRight, AlertTriangle, Info, CheckCircle } from 'lucide-react'
 import KpiCard from '../components/shared/KpiCard'
 import DateRangePicker from '../components/shared/DateRangePicker'
-import { overviewKPIs, callVolumeData, callOutcomes, activityFeed, practitionerTable, alerts } from '../data/overview'
+import { overviewData } from '../data/overview'
+import { toPracticeKey } from '../utils/practice'
 
 const activityTypeColors = {
   booked: '#22C55E',
@@ -42,6 +43,13 @@ export default function Overview() {
   const navigate = useNavigate()
   const { practice } = useOutletContext()
 
+  const practiceKey = toPracticeKey(practice)
+  const data = overviewData[practiceKey]
+  const kpis = data.kpis[range] || data.kpis['30d']
+  const callVolumeData = data.callVolume[range] || data.callVolume['30d']
+  const callOutcomes = data.callOutcomes[range] || data.callOutcomes['30d']
+  const { activityFeed, practitionerTable, alerts, greeting, headline } = data
+
   return (
     <div style={{ padding: '28px 28px', maxWidth: 1400 }}>
       {/* Hero Header */}
@@ -51,11 +59,11 @@ export default function Overview() {
             SATURDAY · 10 MAY 2026
           </div>
           <div style={{ fontSize: 28, fontWeight: 600, color: '#F0EDE8', letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: 6 }}>
-            Good morning, Anjali.{' '}
-            <em style={{ color: '#F5A623', fontStyle: 'italic' }}>Things are quiet.</em>
+            Good morning, {greeting}.{' '}
+            <em style={{ color: '#F5A623', fontStyle: 'italic' }}>{range === 'today' ? 'Things are quiet.' : range === '7d' ? 'A solid week.' : range === '90d' ? 'Strong quarter.' : 'Things are quiet.'}</em>
           </div>
           <div style={{ fontSize: 12, color: '#5A5A5A' }}>
-            47 calls handled so far today. Diary at 78% utilisation. Two items want your eye.
+            {headline.calls} calls handled so far today. Diary at {headline.util}% utilisation. {headline.alerts} item{headline.alerts !== 1 ? 's' : ''} want your eye.
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
@@ -74,7 +82,7 @@ export default function Overview() {
 
       {/* KPI Strip */}
       <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
-        {overviewKPIs.map(kpi => (
+        {kpis.map(kpi => (
           <KpiCard
             key={kpi.id}
             label={kpi.label}

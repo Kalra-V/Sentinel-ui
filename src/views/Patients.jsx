@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useOutletContext } from 'react-router-dom'
 import { Search, Download, ChevronUp, ChevronDown } from 'lucide-react'
 import DateRangePicker from '../components/shared/DateRangePicker'
 import PatientTimelinePanel from '../components/patients/PatientTimelinePanel'
-import { patientMetrics, patients } from '../data/patients'
+import { patientsData } from '../data/patients'
+import { toPracticeKey } from '../utils/practice'
 
 const columns = [
   { key: 'name', label: 'Name', width: '1fr' },
@@ -23,13 +24,19 @@ export default function Patients() {
   const [sortDir, setSortDir] = useState('asc')
   const [selectedPatient, setSelectedPatient] = useState(null)
   const location = useLocation()
+  const { practice } = useOutletContext()
+
+  const practiceKey = toPracticeKey(practice)
+  const data = patientsData[practiceKey]
+  const patientMetrics = data.metrics[range] || data.metrics['30d']
+  const patients = data.patients
 
   useEffect(() => {
     if (location.state?.openPatientId) {
       const p = patients.find(pt => pt.id === location.state.openPatientId)
       if (p) setSelectedPatient(p)
     }
-  }, [location.state])
+  }, [location.state, patients])
 
   const filtered = patients.filter(p =>
     p.name.toLowerCase().includes(search.toLowerCase()) ||

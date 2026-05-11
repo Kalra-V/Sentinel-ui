@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts'
-import { journeyMetrics, cohortData, sankeyData, sourceLTV } from '../data/journey'
+import { useOutletContext } from 'react-router-dom'
+import { journeyData } from '../data/journey'
+import { toPracticeKey } from '../utils/practice'
 import DateRangePicker from '../components/shared/DateRangePicker'
 
 const cohortMetricKeys = ['m0', 'm1', 'm3', 'm6', 'm12', 'm24']
@@ -122,6 +124,15 @@ function SankeyViz({ data }) {
 export default function PatientJourney() {
   const [range, setRange] = useState('30d')
   const [cohortMetric, setCohortMetric] = useState('m6')
+  const { practice } = useOutletContext()
+
+  const practiceKey = toPracticeKey(practice)
+  const practiceData = journeyData[practiceKey]
+  const journeyMetrics = practiceData.metrics
+  const cohortData = practiceData.cohortData
+  const sankeyData = practiceData.sankeyData
+  const sourceLTV = practiceData.sourceLTV
+
   const maxCohortVal = Math.max(...cohortData.map(c => c[cohortMetric] || 0))
 
   return (

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Send, BarChart2, ArrowRight } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts'
+import { useOutletContext } from 'react-router-dom'
 
 const suggestedPrompts = [
   { id: 'invisalign', label: 'How many Invisalign leads from Meta Ads booked treatment plans?' },
@@ -71,26 +72,26 @@ Three factors appear to be driving this:
   },
   utilisation: {
     prompt: 'Which practitioner has the lowest chair utilisation this month?',
-    text: `**Dr Chen** has the lowest chair utilisation this month at **68%** — 10 percentage points below the practice average of 78%.
+    text: `**Dr Hewitt** has the lowest chair utilisation this month at **68%** — 10 percentage points below the practice average of 78%.
 
-Breakdown of Dr Chen's current month:
+Breakdown of Dr Hewitt's current month:
 - **Available chair hours:** 88h
 - **Booked hours:** 59.8h (68%)
 - **Completed hours:** 54.2h (FTA-adjusted: 61.6%)
 - **Unfilled slots:** 28.2h of bookable time remaining this month
 
-The utilisation gap is concentrated in **Tuesday afternoons** and **Friday mornings** — these slots have had consistent low booking rates for the past 6 weeks. Dr Chen's appointment type mix is heavily weighted toward new patient consultations (42%) which have longer average lead times.
+The utilisation gap is concentrated in **Tuesday afternoons** and **Friday mornings** — these slots have had consistent low booking rates for the past 6 weeks. Dr Hewitt's appointment type mix is heavily weighted toward new patient consultations (42%) which have longer average lead times.
 
-**Waitlist match:** 11 existing patients are waiting for appointments with Dr Chen, 4 of whom could fill Tuesday afternoon slots within 7 days.
+**Waitlist match:** 11 existing patients are waiting for appointments with Dr Hewitt, 4 of whom could fill Tuesday afternoon slots within 7 days.
 
 **Data sources used:** Dentally diary · Dentally appointments · GHL waitlist`,
     chart: {
       title: 'Practitioner Utilisation — This Month',
       data: [
-        { name: 'Dr Patel', value: 84, color: '#22C55E' },
+        { name: 'Dr Fletcher', value: 84, color: '#22C55E' },
         { name: 'Dr Morrison', value: 76, color: '#F5A623' },
         { name: 'Dr Okafor', value: 71, color: '#F5A623' },
-        { name: 'Dr Chen', value: 68, color: '#EF4444' },
+        { name: 'Dr Hewitt', value: 68, color: '#EF4444' },
       ]
     }
   },
@@ -100,11 +101,11 @@ The utilisation gap is concentrated in **Tuesday afternoons** and **Friday morni
 
 | Patient | Treatment | Value | Last Contact | Gap |
 |---|---|---|---|---|
-| Ranjit Singh | Implant + Crown | £2,800 | SMS (18d ago) | 18 months lapsed |
-| Tom Hargreaves | Implant consult | £3,600 | No contact | New plan, no FU |
-| David Osei | Invisalign Lite | £1,950 | Email (7d ago) | Plan accepted, no appt |
-| Sofia Petrov | Composite Bonding | £2,400 | Email (5d ago) | Plan active, no next appt |
-| Claire Bennett | Invisalign Lite | £1,950 | No contact | New plan |
+| George Whitmore | Implant + Crown | £2,800 | SMS (18d ago) | 18 months lapsed |
+| Edward Hargreaves | Implant consult | £3,600 | No contact | New plan, no FU |
+| Thomas Reid | Invisalign Lite | £1,950 | Email (7d ago) | Plan accepted, no appt |
+| Charlotte Evans | Composite Bonding | £2,400 | Email (5d ago) | Plan active, no next appt |
+| Fiona Bennett | Invisalign Lite | £1,950 | No contact | New plan |
 | + 4 others | Various | £5,700 | — | — |
 
 **Sophie has capacity** to contact all 9 this week. GHL sequences are not active for 6 of these patients.
@@ -115,9 +116,9 @@ The utilisation gap is concentrated in **Tuesday afternoons** and **Friday morni
     chart: {
       title: 'Unbooked Pipeline by Practitioner',
       data: [
-        { name: 'Dr Patel', value: 6400, color: '#F5A623' },
+        { name: 'Dr Fletcher', value: 6400, color: '#F5A623' },
         { name: 'Dr Okafor', value: 5800, color: '#F5A623' },
-        { name: 'Dr Chen', value: 4200, color: '#F5A623' },
+        { name: 'Dr Hewitt', value: 4200, color: '#F5A623' },
         { name: 'Dr Morrison', value: 2000, color: '#F5A623' },
       ]
     }
@@ -161,6 +162,7 @@ export default function AskSentinel() {
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+  const { practice } = useOutletContext()
 
   const sendPrompt = (promptId, promptText) => {
     const response = cannedResponses[promptId]
@@ -206,7 +208,7 @@ export default function AskSentinel() {
           <div style={{ maxWidth: 640, margin: '0 auto' }}>
             <div style={{ fontSize: 24, fontWeight: 600, color: '#F0EDE8', letterSpacing: '-0.02em', marginBottom: 8 }}>
               Ask anything about<br />
-              <em style={{ color: '#F5A623', fontStyle: 'italic' }}>Chelsea Dental Studio.</em>
+              <em style={{ color: '#F5A623', fontStyle: 'italic' }}>{practice}.</em>
             </div>
             <div style={{ fontSize: 12, color: '#4A4A4A', marginBottom: 32 }}>
               I'll search across Dentally, GHL, and your call data to give you a grounded answer.
