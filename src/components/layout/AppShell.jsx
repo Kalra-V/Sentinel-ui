@@ -10,7 +10,7 @@ export default function AppShell() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: '#0B0B0B', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ fontSize: 28, fontWeight: 600, color: '#F0EDE8', letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: 6 }}>
-            Web Widget Testing Page
+            Sentinel - Web Widget Testing Page
           </div>
       {/* <div> Dummy page </div> */}
       {/* <Sidebar practice={practice} setPractice={setPractice} />
