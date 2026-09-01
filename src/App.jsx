@@ -12,12 +12,12 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppShell />}>
-          <Route index element={<Overview />} />
+          {/* <Route index element={<Overview />} />
           <Route path="calls" element={<Calls />} />
           <Route path="patients" element={<Patients />} />
           <Route path="journey" element={<PatientJourney />} />
           <Route path="revenue" element={<Revenue />} />
-          <Route path="ask" element={<AskSentinel />} />
+          <Route path="ask" element={<AskSentinel />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>
